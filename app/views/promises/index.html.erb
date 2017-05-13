@@ -1,0 +1,42 @@
+<!-- Some need variables -->
+<% days_in_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] %>
+<% @current_month_days = days_in_months[Time.now.month - 1] %>
+<% current_month = Time.now.strftime("%B") %>
+<% current_day = Time.now.day %>
+<!-- Display current Data and navigation -->
+<div class="text-center">
+  <button class="glyphicon glyphicon-chevron-left">
+  </button>
+  <h2><%= current_month %></h2>
+  <button class="glyphicon glyphicon-chevron-right">
+  </button>
+</div>
+<h5 class="text-center">Today is <%= Time.now.strftime("%A, %d %B %Y") %></h5>
+
+<!-- Table -->
+<table class="table table-bordered text-center" id="prom-table">
+  <thead>
+    <tr>
+      <th>Promises\Day</th>
+      <% for i in 1..@current_month_days %>
+        <% if i === current_day %>
+          <th class="active"><%= i %></th>
+        <% else %>
+          <th><%= i %></th>
+        <% end %>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @promises.each do |promise| %>
+    <tr>
+
+        <td><%= promise.title %></td>
+          <% for i in 0..(@current_month_days-1) %>
+        <td><label><input type="checkbox"</label></td>
+          <% end %>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

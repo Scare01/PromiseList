@@ -1,2 +1,3 @@
 class Promise < ApplicationRecord
+  
 end
