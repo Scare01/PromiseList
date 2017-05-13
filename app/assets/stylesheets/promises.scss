@@ -1,10 +1,15 @@
 // Place all the styles related to the Promises controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.naviagtion_month {
+  margin-top: 0;
+  padding: 0;
+}
 
-
-// #prom-table {
-//   width: 60%;
-//   align-text: center;
-//   margin: 50px 0 0 50px;
-// }
+#month_name {
+  margin: 0;
+  p {
+    font-size: 2em;
+    margin: 0;
+  }
+}
