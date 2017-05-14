@@ -15,3 +15,11 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+
+document.addEventListener("DOMContentLoaded",
+function(){
+  console.log("dom load");
+  document.querySelector("#left_btn").addEventListener("click", function(){
+    console.log("@current_month")
+    // document.querySelector("#month_name").innerHTML = "<p>"+ @previous_month +"</p>"
+  })});
