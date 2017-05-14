@@ -2,15 +2,17 @@ class PromisesController < ApplicationController
   before_action :find_promise, only: [:edit, :update, :destroy]
 
   def index
-    @promises = Promise.all
+    if user_signed_in?
+      @promises = Promise.where(:user_id => current_user.id)
+    end
   end
 
   def new
-    @promise = Promise.new
+    @promise = current_user.promises.build
   end
 
   def create
-    @promise = Promise.new(promise_params)
+    @promise = current_user.promises.build(promise_params)
     if @promise.save
       redirect_to root_path
     else

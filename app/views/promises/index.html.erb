@@ -1,49 +1,59 @@
-<!-- Some need variables -->
-<% days_in_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] %>
-<% @current_month_days = days_in_months[Time.now.month - 1] %>
-<% current_month = Time.now.strftime("%B") %>
-<% current_day = Time.now.day %>
+<% if user_signed_in? %>
+  <!-- Some need variables -->
+  <% days_in_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] %>
+  <% @current_month_days = days_in_months[Time.now.month - 1] %>
+  <% current_month = Time.now.strftime("%B") %>
+  <% current_day = Time.now.day %>
 
-<!-- Display current Data and navigation -->
-<div class= "row">
-  <div class="col-md-4"><button class="glyphicon glyphicon-chevron-left naviagtion_month pull-right">
-  </button></div>
-  <div class="col-md-4 text-center" id="month_name"><p><%= current_month %></p></div>
-  <div class="col-md-4"><button class="glyphicon glyphicon-chevron-right naviagtion_month">
-  </button></div>
-</div>
-<div>
-  <h5 class="text-center">Today is <%= Time.now.strftime("%A, %d %B %Y") %></h5>
-</div>
+  <!-- Display current Data and navigation -->
+  <div class="row">
+    <div class="col-md-4">
+      <button class="glyphicon glyphicon-chevron-left naviagtion_month pull-right"></button>
+    </div>
+    <div class="col-md-4 text-center" id="month_name">
+      <p><%= current_month %></p>
+    </div>
+    <div class="col-md-4">
+      <button class="glyphicon glyphicon-chevron-right naviagtion_month"></button>
+    </div>
+  </div>
+  <div>
+    <h5 class="text-center">Today is
+      <%= Time.now.strftime("%A, %d %B %Y") %></h5>
+  </div>
 
-
-<!-- Table head -->
-<table class="table table-bordered text-center" id="prom-table">
-  <thead>
-    <tr>
-      <th>Promises\Day</th>
-      <% for i in 1..@current_month_days %>
-        <% if i === current_day   %>
-          <th class="info"><%= i %></th>
-        <% else %>
+  <!-- Table head -->
+  <table class="table table-bordered text-center" id="prom-table">
+    <thead>
+      <tr>
+        <th>Promises\Day</th>
+        <% for i in 1..@current_month_days %>
+          <% if i === current_day   %>
+            <th class="info"><%= i %></th>
+          <% else %>
           <th><%= i %></th>
-        <% end %>
-      <% end %>
-    </tr>
-  </thead>
-<!-- Table body -->
-  <tbody>
-    <% @promises.each do |promise| %>
-    <tr>
-        <td><%= promise.title %> <%= link_to "", edit_promise_path(promise), class: "glyphicon glyphicon-edit" %> <%= link_to "", promise_path(promise), method: :delete, data: { confirm: "Are you sure?"}, class: "glyphicon glyphicon-trash" %></td>
-          <% for i in 0..(@current_month_days-1) %>
-            <% if (i+1) === current_day %>
-              <td class="info"><label><input type="checkbox"</label></td>
-            <% else %>
-            <td><label><input type="checkbox"</label></td>
           <% end %>
         <% end %>
+      </tr>
+    </thead>
+    <!-- Table body -->
+    <tbody>
+      <% @promises.each do |promise| %>
+        <tr>
+          <td><%= promise.title %>
+          <%= link_to "", edit_promise_path(promise), class: "glyphicon glyphicon-edit" %>
+          <%= link_to "", promise_path(promise), method: :delete, data: { confirm: "Are you sure?"}, class: "glyphicon glyphicon-trash" %></td>
+          <% for i in 0..(@current_month_days-1) %>
+            <% if (i+1) === current_day %>
+              <td class="info">
+              <label><input type="checkbox" </label></td>
+            <% else %>
+              <td>
+              <label><input type="checkbox" </label></td>
+            <% end %>
+        <% end %>
       <% end %>
-    </tr>
-  </tbody>
-</table>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
