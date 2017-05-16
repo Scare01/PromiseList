@@ -26,5 +26,35 @@
 
 // Save checkbox value
 
-var current_month = "#{@current_month}";
+
+document.addEventListener("DOMContentLoaded",
+  function() {
+  
+    var month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    // var month_on_page = document.getElementById("current_month").innerHTML;
+  
+  
+
+    
+    for (var i = 0; i < month.length; i++) {
+      if (month[i] === month_on_page) {
+        document.getElementById("left_btn").addEventListener("click", function(){
+          var month_on_page = document.getElementById("current_month").innerHTML = "Bla-Bla";
+          
+        })  
+      }
+       
+    }
+    
+  
+  })
+
+  
+  
+  
+  
+ 
+
+
+
 
