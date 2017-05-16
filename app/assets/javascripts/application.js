@@ -2,35 +2,23 @@ document.addEventListener("DOMContentLoaded",
   function() {
 
     var month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-    var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-    var days_in_months;
+    var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var days_in_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     var day_today = weekday[new Date().getDay()];
 
-    var full_date_today = "Today is " + day_today + ", " + new Date().getDate() + " " + month[new Date().getMonth()] + " " + new Date().getFullYear() ;
+
 
 // Add current month on page
-    for (var i=0; i < month.length; i++){
-      if(i === new Date().getMonth()){
-        document.getElementById("current_month").innerHTML = month[i];
-      }
+  for (var i=0; i < month.length; i++){
+    if(i === new Date().getMonth()){
+      document.getElementById("current_month").innerHTML = month[i];
     }
+  }
 
 
-
-    document.getElementById("date_today").innerHTML = full_date_today;
-
-    switch (new Date().getMonth()) {
-      case 0, 2, 4, 6, 7, 9, 11:
-        days_in_months = 31;
-        break;
-      case 1:
-        days_in_months = 28;
-        break;
-      case 3, 5, 8, 10:
-        days_in_months = 30;
-        break;
-    }
-
+// add full date to page
+  var full_date_today = "Today is " + day_today + ", " + new Date().getDate() + " " + month[new Date().getMonth()] + " " + new Date().getFullYear() ;
+  document.getElementById("date_today").innerHTML = full_date_today;
 
   // Change month to left side
     document.getElementById("left_btn").addEventListener("click",
@@ -68,4 +56,12 @@ document.addEventListener("DOMContentLoaded",
         document.getElementById("right_btn").disabled = true;
       }
     });
+
+    // Add days
+    var th = document.createElement("th");
+      for (var i =1; i <= days_in_months[new Date().getMonth()]; i++){
+
+        document.getElementById("days").innerHTML = th;
+      }
+
   })
