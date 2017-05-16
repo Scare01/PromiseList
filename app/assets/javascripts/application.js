@@ -1,55 +1,65 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file. JavaScript code in this file should be added after the last require_* statement.
-//
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
-// about supported directives.
-//
-//= require jquery
-//= require jquery_ujs
-//= require turbolinks
-//= require_tree .
-//= require bootstrap-sprockets
-
-// document.addEventListener("DOMContentLoaded",
-// function(){
-//   console.log("dom load");
-//   document.getElementById("#left_btn").addEventListener("click", function(){
-//     console.log("@current_month");
-//     // document.querySelector("#month_name").innerHTML = "<p>"+ @previous_month +"</p>"
-//   })});
-
-// Save checkbox value
-
-
 document.addEventListener("DOMContentLoaded",
   function() {
   
     var month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-    // var month_on_page = document.getElementById("current_month").innerHTML;
-  
-  
-
+    var days_in_months;
     
-    for (var i = 0; i < month.length; i++) {
-      if (month[i] === month_on_page) {
-        document.getElementById("left_btn").addEventListener("click", function(){
-          var month_on_page = document.getElementById("current_month").innerHTML = "Bla-Bla";
-          
-        })  
+    for (var i=0; i < month.length; i++){
+      if(i === new Date().getMonth()){
+        document.getElementById("current_month").innerHTML = month[i];
       }
-       
     }
     
-  
+    switch (new Date().getMonth()) {
+      case 0, 2, 4, 6, 7, 9, 11:
+        days_in_months = 31;
+        break;
+      case 1:
+        days_in_months = 28;
+        break;
+      case 3, 5, 8, 10:
+        days_in_months = 30;
+        break;
+    }
+    
+    
+  // Change month to left side
+    document.getElementById("left_btn").addEventListener("click",
+      function(){
+        document.getElementById("right_btn").disabled = false;
+        for (var i = 0; i < month.length; i++) {
+          var month_on_page = document.getElementById("current_month").innerHTML;
+        if (month[i] === month_on_page) {
+          var new_month = month[i-1]; 
+        }
+      }
+      document.getElementById("current_month").innerHTML = new_month;
+      month_on_page = new_month;
+      
+      if (month_on_page === "January"){
+        document.getElementById("left_btn").disabled = true;
+      }
+      
+      
+    });  
+  // Change month to rigth side  
+    document.getElementById("right_btn").addEventListener("click",
+    function(){
+      document.getElementById("left_btn").disabled = false;
+      for (var i = 0; i < month.length; i++) {
+        var month_on_page = document.getElementById("current_month").innerHTML;
+        if (month[i] === month_on_page) {
+          var new_month = month[i+1]; 
+        }
+      }
+      document.getElementById("current_month").innerHTML = new_month;
+      month_on_page = new_month;
+      
+      if (month_on_page === "December"){
+        document.getElementById("right_btn").disabled = true;
+      }
+    });  
   })
-
-  
   
   
   
