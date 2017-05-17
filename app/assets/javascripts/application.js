@@ -9,8 +9,9 @@ document.addEventListener("DOMContentLoaded",
 
     var month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    var days_in_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    var days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     var day_today = weekday[new Date().getDay()];
+   
 
 
 
@@ -32,10 +33,10 @@ document.addEventListener("DOMContentLoaded",
         document.getElementById("right_btn").disabled = false;
         for (var i = 0; i < month.length; i++) {
           var month_on_page = document.getElementById("current_month").innerHTML;
-        if (month[i] === month_on_page) {
-          var new_month = month[i-1];
+          if (month[i] === month_on_page) {
+            var new_month = month[i-1];
+          }
         }
-      }
       document.getElementById("current_month").innerHTML = new_month;
       month_on_page = new_month;
 
@@ -63,11 +64,57 @@ document.addEventListener("DOMContentLoaded",
       }
     });
 
-    // Add days
-    var th = document.createElement("th");
-      for (var i =1; i <= days_in_months[new Date().getMonth()]; i++){
-
-        document.getElementById("days").innerHTML = th;
-      }
+    // Add name of table
+    var table = document.getElementById("prom-table");
+    var header = table.createTHead();
+    var row = header.insertRow(0);
+    var cell = row.insertCell(0);
+    cell.innerHTML = "Promises\\Day";
+    
+    
+    //add days of month 
+    for (var i = 0; i < month.length; i++ ){
+      var month_on_page = document.getElementById("current_month").innerHTML;
+      
+          if (month[i] === month_on_page){
+            var days = days_in_month[i];
+            for (var j =1; j <=days; j++){
+              var cell = row.insertCell(j);
+              cell.innerHTML = j;
+            }
+          }
+    }  
+    
+    
+    document.getElementById("current_month").addEventListener("DOMSubtreeModified",function(){
+      document.getElementById("prom-table").deleteTHead();
+      
+       // Add name of table
+      var table = document.getElementById("prom-table");
+      var header = table.createTHead();
+      var row = header.insertRow(0);
+      var cell = row.insertCell(0);
+      cell.innerHTML = "Promises\\Day";
+    
+    
+        //add days of month 
+      for (var i = 0; i < month.length; i++ ){
+        var month_on_page = document.getElementById("current_month").innerHTML;
+      
+          if (month[i] === month_on_page){
+            var days = days_in_month[i];
+            for (var j =1; j <=days; j++){
+              var cell = row.insertCell(j);
+              cell.innerHTML = j;
+            }
+          }
+      } 
+      
+    });
+    
+    
+    
+    
+    
 
   })
