@@ -4,16 +4,16 @@
 //= require turbolinks
 //= require_tree 
 
-document.addEventListener("DOMContentLoaded",
-  function() {
 
-    var month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-    var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    var days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    var day_today = weekday[new Date().getDay()];
-   
+var month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+var days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+var day_today = weekday[new Date().getDay()];
 
 
+
+document.addEventListener("DOMContentLoaded", function() {
+  // document.observe('dom:loaded', function() {
 
 // Add current month on page
   for (var i=0; i < month.length; i++){
@@ -21,13 +21,13 @@ document.addEventListener("DOMContentLoaded",
       document.getElementById("current_month").innerHTML = month[i];
     }
   }
-
+ 
 
 // add full date to page
   var full_date_today = "Today is " + day_today + ", " + new Date().getDate() + " " + month[new Date().getMonth()] + " " + new Date().getFullYear() ;
   document.getElementById("date_today").innerHTML = full_date_today;
 
-  // Change month to left side
+// Change month to left side
     document.getElementById("left_btn").addEventListener("click",
       function(){
         document.getElementById("right_btn").disabled = false;
@@ -43,10 +43,8 @@ document.addEventListener("DOMContentLoaded",
       if (month_on_page === "January"){
         document.getElementById("left_btn").disabled = true;
       }
-
-
     });
-  // Change month to rigth side
+// Change month to rigth side
     document.getElementById("right_btn").addEventListener("click",
     function(){
       document.getElementById("left_btn").disabled = false;
@@ -110,11 +108,23 @@ document.addEventListener("DOMContentLoaded",
           }
       } 
       
+      document.getElementsByClassName("promise") 
+        function(){
+          if (tr) {alert("new tr here!");}
+        }
+      );
+      
+      
     });
     
-    
-    
-    
+  // Reload page for home button
+    document.getElementById("go_home").addEventListener("click", function(){
+     document.location.reload();
+    });
+ 
+    // DOMNodeInserted
     
 
   })
+
+
