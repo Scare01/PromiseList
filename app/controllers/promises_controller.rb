@@ -29,7 +29,8 @@ end
 
   def edit
   end
-
+  
+ 
   def update
     if @promise.update(promise_params)
       redirect_to root_path
