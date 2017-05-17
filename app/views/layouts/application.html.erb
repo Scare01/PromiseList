@@ -22,12 +22,12 @@
         <% else %>
           <li><%= link_to "Log In", new_user_session_path  %></li>
         <% end %>
+        <li></li>
       </ul>
       <% if user_signed_in? %>
         <%= link_to "New Promise", new_promise_path, class: "navbar-text navbar-link navbar-right" %>
       <% end %>
-    </div>
-
+  </div>
   </nav>
 
   <p class="notice"><%= notice %></p>
