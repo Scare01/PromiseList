@@ -4,14 +4,15 @@ document.addEventListener("DOMContentLoaded",
     var month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     var days_in_months;
-    var date_today = Date().getDate();
-    var day_today = weekday[Date().getDay()];
-    var year_today = Date().getFullYear();
-    var month_today = Date().getMonth();
+    // var date_today = Date().getDate();
+    // var day_today = weekday[Date().getDay()];
+    // var year_today = Date().getFullYear();
+    // var month_today = Date().getMonth();
     
-    var full_date_today = "Today is " +  + day_today 
+    // var full_date_today = "Today is " +  + day_today; 
+    
     for (var i=0; i < month.length; i++){
-      if(i === Date().getMonth()){
+      if(i === new Date().getMonth()){
         document.getElementById("current_month").innerHTML = month[i];
       }
     }
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded",
     
     document.getElementById("date_today").innerHTML = new Date();
     
-    switch (new Date().getMonth()) {
+    switch ( new Date().getMonth()) {
       case 0, 2, 4, 6, 7, 9, 11:
         days_in_months = 31;
         break;
