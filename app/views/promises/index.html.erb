@@ -19,30 +19,35 @@
   
   <table class="table table-bordered text-center" id="prom-table">
     <tbody id="table_body">
-      <% @promises.each do |promise| %>
-        <tr class="new_promise">
+     <% @i = 0 %>
+     <% @promises.each do |promise| %>
+         <% @i+=1 %>
+         <tr id="promise_number_<%= @i %>">
+         
+           <td class="promise"><%= promise.title %>
+           <%= link_to "", edit_promise_path(promise), class: "glyphicon glyphicon-edit" %>
+           <%= link_to "", promise_path(promise), method: :delete, data: { confirm: "Are you sure?"}, class: "glyphicon glyphicon-trash" %>
+           </td>
           
-          <td class="promise"><%= promise.title %>
-          <%= link_to "", edit_promise_path(promise), class: "glyphicon glyphicon-edit" %>
-          <%= link_to "", promise_path(promise), method: :delete, data: { confirm: "Are you sure?"}, class: "glyphicon glyphicon-trash" %></td>
-          
-        <!--  <% for i in 0..(@current_month_days-1) %>-->
-        <!--    <% if (i+1) === @current_day %>-->
-        <!--      <td class="info">-->
-        <!--        <div class="checkbox-container">-->
-        <!--          <input type="checkbox">-->
-        <!--        </div>-->
-        <!--      </td>-->
-        <!--    <% else %>-->
-        <!--      <td>-->
-        <!--        <div class="checkbox-container">-->
-        <!--          <input type="checkbox">-->
-        <!--        </div>-->
-        <!--      </td>-->
-        <!--    <% end %>-->
-        <!--<% end %>-->
+            <!--  <% for i in 0..(@current_month_days-1) %>-->
+            <!--    <% if (i+1) === @current_day %>-->
+            <!--      <td class="info">-->
+            <!--        <div class="checkbox-container">-->
+            <!--          <input type="checkbox">-->
+            <!--        </div>-->
+            <!--      </td>-->
+            <!--    <% else %>-->
+            <!--      <td>-->
+            <!--        <div class="checkbox-container">-->
+            <!--          <input type="checkbox">-->
+            <!--        </div>-->
+            <!--      </td>-->
+            <!--    <% end %>-->
+            <!--<% end %>-->
+          </tr>
+          <% i+=1 %>
+        
       <% end %>
-      </tr>
     </tbody>
   </table>
 <% else %>

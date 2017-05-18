@@ -13,6 +13,12 @@ var day_today = weekday[new Date().getDay()];
 
 
 document.addEventListener("DOMContentLoaded", function() {
+  
+  // Reload page for home button
+    document.getElementById("go_home").addEventListener("click", function(){
+     document.location.reload();
+    });
+  
   // document.observe('dom:loaded', function() {
 
 // Add current month on page
@@ -102,25 +108,63 @@ document.addEventListener("DOMContentLoaded", function() {
           if (month[i] === month_on_page){
             var days = days_in_month[i];
             for (var j =1; j <=days; j++){
-              var cell = row.insertCell(j);
+              cell = row.insertCell(j);
               cell.innerHTML = j;
             }
           }
       } 
       
-      document.getElementsByClassName("promise") 
-        function(){
-          if (tr) {alert("new tr here!");}
-        }
-      );
+  // add days in each new row
+  
+    
+    
+      // for (var i = 1; i <= 10; i++){
+      // var id_promise = "promise_number_" + i;
+       
+      // if(document.getElementById("id_promise").length > 0) {
+      //   for (var i = 0; i < month.length; i++ ){
+      //     var month_on_page = document.getElementById("current_month").innerHTML;
+      
+      //     if (month[i] === month_on_page){
+      //       var days = days_in_month[i];
+      //       for (var j =1; j <=days; j++){
+      //         cell = row.insertCell(j);
+      //         cell.innerHTML = j;
+      //       }
+      //     }
+      //   }
+      // }
+       
+      // } 
+      
+    
+    
+     
+     
+     
+      // for (var i =1; i <= 10; i++ ){
+      //   var id_promise = "promise_number_" + i;
+      //   row = document.getElementById(id_promise);
+      //   cell = row.insertCell(i)
+        
+      //   for (var i = 0; i < month.length; i++ ){
+      //   var month_on_page = document.getElementById("current_month").innerHTML;
+      
+      //     if (month[i] === month_on_page){
+      //       var days = days_in_month[i];
+      //       for (var j =1; j <=days; j++){
+      //         cell = row.insertCell(j);
+      //         cell.innerHTML = j;
+      //       }
+      //     }
+      //   }
+      // }
+      
       
       
     });
     
-  // Reload page for home button
-    document.getElementById("go_home").addEventListener("click", function(){
-     document.location.reload();
-    });
+  
  
     // DOMNodeInserted
     
