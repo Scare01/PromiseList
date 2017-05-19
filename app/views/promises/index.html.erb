@@ -27,29 +27,24 @@
            <td class="promise"><%= promise.title %>
            <%= link_to "", edit_promise_path(promise), class: "glyphicon glyphicon-edit" %>
            <%= link_to "", promise_path(promise), method: :delete, data: { confirm: "Are you sure?"}, class: "glyphicon glyphicon-trash" %>
+            <script>
+               alert(month_on_page);
+             </script>
+           
            </td>
-          
-            <!--  <% for i in 0..(@current_month_days-1) %>-->
-            <!--    <% if (i+1) === @current_day %>-->
-            <!--      <td class="info">-->
-            <!--        <div class="checkbox-container">-->
-            <!--          <input type="checkbox">-->
-            <!--        </div>-->
-            <!--      </td>-->
-            <!--    <% else %>-->
-            <!--      <td>-->
-            <!--        <div class="checkbox-container">-->
-            <!--          <input type="checkbox">-->
-            <!--        </div>-->
-            <!--      </td>-->
-            <!--    <% end %>-->
-            <!--<% end %>-->
-          </tr>
-          <% i+=1 %>
-        
+           
+            
+           
       <% end %>
     </tbody>
   </table>
 <% else %>
   <%= render 'layouts/static_landing_page' %>
+
+
+
+
+
 <% end %>
+
+

@@ -115,7 +115,15 @@ document.addEventListener("DOMContentLoaded", function() {
       } 
       
   // add days in each new row
-  
+    
+    
+    
+    document.getElementById("prom-table").addEventListener("DOMAttrModified", 
+      function(){
+        alert("added elemetn");
+      });
+      
+    
     
     
       // for (var i = 1; i <= 10; i++){
