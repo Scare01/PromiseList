@@ -2,12 +2,9 @@ class PromisesController < ApplicationController
   before_action :find_promise, only: [:edit, :update, :destroy]
 
   def index
-    @months = {1=>"January", 2=>"February", 3=>"March", 4=>"March", 5=>"May", 6=>"June", 7=>"July", 8=>"August", 9=>"September", 10=>"October", 11=>"November", 12=>"December"}
-    days_in_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    @current_month_days = days_in_months[Time.now.month - 1]
-    @current_month_number = Time.now.month
-    @months.each {|key, value|  @current_month = value if @current_month_number === key}
-    @current_day = Time.now.day
+    @months = {0=>"January", 1=>"February", 2=>"March", 3=>"March", 4=>"May", 5=>"June", 6=>"July", 7=>"August", 8=>"September", 9=>"October", 10=>"November", 11=>"December"}
+    @days_in_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    @date = params[:date] ? Date.parse(params[:date]) : Date.today
 
     if user_signed_in?
       @promises = Promise.where(:user_id => current_user.id)

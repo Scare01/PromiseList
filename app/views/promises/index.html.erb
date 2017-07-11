@@ -2,49 +2,70 @@
 
   <!-- Display current Data and navigation -->
   <div class="row">
-    <div class="col-md-4">
-      <button class="glyphicon glyphicon-chevron-left naviagtion_month pull-right" id="left_btn"></button>
+    
+    <div class="col-md-4 text-right">
+      <%= link_to "<", date: @date.prev_month%>
     </div>
     <div class="col-md-4 text-center" id="month_name">
-      <p id="current_month"></p>
+      <p class="text-center"><%= @date.strftime("%B %Y") %></p>
     </div>
-    <div class="col-md-4">
-      <button class="glyphicon glyphicon-chevron-right naviagtion_month" id="right_btn"></button>
+    <div class="col-md-4 text-left">
+      <%= link_to ">", date: @date.next_month %>
     </div>
+     
+    
   </div>
   <div>
     <h5 class="text-center" id="date_today"></h5>
   </div>
 
+
+
   
   <table class="table table-bordered text-center" id="prom-table">
     <tbody id="table_body">
-      <% @promises.each do |promise| %>
-        <tr class="new_promise">
+     
+        <td>Promise\Day</td>
+        <% @months.each do |key, value|%>
+       
+              <% if @date.strftime("%B") === value %>
+                <% for i in 1..@days_in_months[key] %>
+                  <td><%= i %></td>  
+                <%end%>
+              <%end%>
+            <%end%>  
+     
+     <% @promises.each do |promise| %>
+      
+        <tr>
+           <td class="promise"><%= promise.title %>
+           <%= link_to "", edit_promise_path(promise), class: "glyphicon glyphicon-edit" %>
+           <%= link_to "", promise_path(promise), method: :delete, data: { confirm: "Are you sure?"}, class: "glyphicon glyphicon-trash" %>
+            
+            <% @months.each do |key, value|%>
+       
+              <% if @date.strftime("%B") === value %>
+                <% for i in 1..@days_in_months[key] %>
+                 <td><%= check_box_tag "Prom", false %></td>
+                <%end%>
+              <%end%>
+            <%end%>  
           
-          <td class="promise"><%= promise.title %>
-          <%= link_to "", edit_promise_path(promise), class: "glyphicon glyphicon-edit" %>
-          <%= link_to "", promise_path(promise), method: :delete, data: { confirm: "Are you sure?"}, class: "glyphicon glyphicon-trash" %></td>
-          
-        <!--  <% for i in 0..(@current_month_days-1) %>-->
-        <!--    <% if (i+1) === @current_day %>-->
-        <!--      <td class="info">-->
-        <!--        <div class="checkbox-container">-->
-        <!--          <input type="checkbox">-->
-        <!--        </div>-->
-        <!--      </td>-->
-        <!--    <% else %>-->
-        <!--      <td>-->
-        <!--        <div class="checkbox-container">-->
-        <!--          <input type="checkbox">-->
-        <!--        </div>-->
-        <!--      </td>-->
-        <!--    <% end %>-->
-        <!--<% end %>-->
+            
+           </td>
+          </tr> 
+            
+           
       <% end %>
-      </tr>
     </tbody>
   </table>
 <% else %>
   <%= render 'layouts/static_landing_page' %>
+
+
+
+
+
 <% end %>
+
+
