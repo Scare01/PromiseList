@@ -25,10 +25,8 @@
         <% end %>
         <li></li>
       </ul>
-      <% if user_signed_in? && Promise.count < 10 %>
+      <% if user_signed_in? %>
         <%= link_to "New Promise", new_promise_path, class: "navbar-text navbar-link navbar-right" %>
-      <% else %>
-        <p class="navbar-text navbar-right">You can add just 10 promises!</p>
       <% end %>
   </div>
   </nav>
